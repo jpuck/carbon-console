@@ -1,0 +1,21 @@
+{
+    "name": "jpuck/time-converter",
+    "description": "PHP 7 CLI app to convert time",
+    "bin": ["bin/time-converter"],
+    "require": {
+        "php": "^7.0",
+        "symfony/console": "^3.2"
+    },
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name": "Jeff Puckett",
+            "email": "jeff@jeffpuckett.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "jpuck\\TimeConverter\\": "src/"
+        }
+    }
+}
