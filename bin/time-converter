@@ -24,7 +24,8 @@ $logo = '
 // http://www.patorjk.com/software/taag/#p=display&f=Ivrit&t=time%20converter
 
 $version = $version ?? 'dev';
+$application = new Application($logo, $version);
 
-$app = new Application($logo, $version);
+$application->add(new Commands\Convert);
 
-$app->run();
+$application->run();
