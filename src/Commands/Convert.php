@@ -22,7 +22,8 @@ class Convert extends Command {
                 'timezone-out',
                 'o',
                 InputOption::VALUE_OPTIONAL,
-                'Output timezone'
+                'Output timezone',
+                'local'
             )->addOption(
                 'format-out',
                 'f',
@@ -38,7 +39,7 @@ class Convert extends Command {
         $carbon = new Carbon($time);
 
         $timezoneOut = $input->getOption('timezone-out');
-        if ( empty($timezoneOut) ) {
+        if ( $timezoneOut === 'local' ) {
             $timezoneOut = date_default_timezone_get();
         }
         $carbon->timezone = $timezoneOut;
