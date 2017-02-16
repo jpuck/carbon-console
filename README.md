@@ -1,15 +1,13 @@
-# Time Converter
+# Carbon Console
+
+Convert timezones and formats with [Carbon][18] wrapped in a PHP7 command line
+[symfony console application][1].
 
 [![Build Status][12]][11]
 [![Codecov][16]][14]
 [![Latest Stable Version][7]][6]
 [![Total Downloads][8]][6]
 [![License][9]][6]
-
-PHP 7 command line [symfony console application][1]
-wrapper for [Carbon][18] to convert time.
-
-----------
 
 ## Installation
 
@@ -18,20 +16,20 @@ and move it to a good `PATH`
 
 Here's a oneline `sudo` command to make it available system-wide:
 
-    curl -s -L https://github.com/jpuck/ctime/releases/latest | egrep -o '/jpuck/ctime/releases/download/[0-9\.]*/ctime.phar' | wget --base=http://github.com/ -i - -O ctime && chmod +x ctime && sudo mv ctime /usr/local/bin/
+    curl -s -L https://github.com/jpuck/carbon-console/releases/latest | egrep -o '/jpuck/carbon-console/releases/download/[0-9\.]*/carbon.phar' | wget --base=http://github.com/ -i - -O carbon && chmod +x carbon && sudo mv carbon /usr/local/bin/
 
 If you don't have `sudo` privileges, then you can omit the last part
-`sudo mv ctime /usr/local/bin/` and just save it somewhere in your user's `PATH`
+`sudo mv carbon /usr/local/bin/` and just save it somewhere in your user's `PATH`
 
 ## Usage
 
 After installing, run the `list` command to see a list of commands:
 
-    ctime list
+    carbon list
 
 Use the `help` command to get help with any command's usage:
 
-    ctime help convert
+    carbon help convert
 
 The primary command is `convert` which defaults input time now and output timezone local.
 
@@ -47,49 +45,49 @@ For the following examples, my system's local timezone is set to UTC.
 
 When it's 8:00AM in Chicago, what time will it be here?
 
-    ctime convert 8:00AM America/Chicago
+    carbon convert 8:00AM America/Chicago
 
 >     2017-02-16T14:00:00+00:00 UTC
 
 It's 5:18PM here, so what time is it in Casey Station?
 
-    ctime convert -o Antarctica/Casey
+    carbon convert -o Antarctica/Casey
 
 >     2017-02-17T04:18:12+11:00 Antarctica/Casey
 
 When it's 6:00PM here, what time will it be in Casey Station?
 
-    ctime convert 6:00PM -o Antarctica/Casey
+    carbon convert 6:00PM -o Antarctica/Casey
 
 >     2017-02-17T05:00:00+11:00 Antarctica/Casey
 
 When it's 6:00PM in Chicago, what time will it be in Casey Station?
 
-    ctime convert 6:00PM America/Chicago -o Antarctica/Casey
+    carbon convert 6:00PM America/Chicago -o Antarctica/Casey
 
 >     2017-02-17T11:00:00+11:00 Antarctica/Casey
 
 Let's format that output as 12-hour:minute
 
-    ctime convert 6:00PM America/Chicago -o Antarctica/Casey -f h:iA
+    carbon convert 6:00PM America/Chicago -o Antarctica/Casey -f h:iA
 
 >     11:00AM
 
 If you use spaces in your format, make sure to quote the argument.
 
-    ctime convert 6:00PM America/Chicago -o Antarctica/Casey -f 'h:iA l, F j'
+    carbon convert 6:00PM America/Chicago -o Antarctica/Casey -f 'h:iA l, F j'
 
 >     11:00AM Friday, February 17
 
 [1]:http://symfony.com/doc/current/components/console.html
-[6]:https://github.com/jpuck/ctime/releases/latest
-[7]:https://poser.pugx.org/jpuck/ctime/v/stable
-[8]:https://img.shields.io/github/downloads/jpuck/ctime/total.svg
-[9]:https://poser.pugx.org/jpuck/ctime/license
-[11]:https://travis-ci.org/jpuck/ctime
-[12]:https://travis-ci.org/jpuck/ctime.svg?branch=master
-[14]:https://codecov.io/gh/jpuck/ctime/branch/master
-[16]:https://img.shields.io/codecov/c/github/jpuck/ctime/master.svg
+[6]:https://github.com/jpuck/carbon-console/releases/latest
+[7]:https://poser.pugx.org/jpuck/carbon-console/v/stable
+[8]:https://img.shields.io/github/downloads/jpuck/carbon-console/total.svg
+[9]:https://poser.pugx.org/jpuck/carbon-console/license
+[11]:https://travis-ci.org/jpuck/carbon-console
+[12]:https://travis-ci.org/jpuck/carbon-console.svg?branch=master
+[14]:https://codecov.io/gh/jpuck/carbon-console/branch/master
+[16]:https://img.shields.io/codecov/c/github/jpuck/carbon-console/master.svg
 [17]:http://php.net/manual/en/timezones.php
 [18]:http://carbon.nesbot.com/
 [19]:http://php.net/manual/en/datetime.formats.php

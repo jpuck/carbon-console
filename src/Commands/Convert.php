@@ -1,5 +1,5 @@
 <?php
-namespace jpuck\ctime\Commands;
+namespace jpuck\CarbonConsole\Commands;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -12,7 +12,7 @@ class Convert extends Command {
     protected function configure()
     {
         $this->setName('convert')
-            ->setDescription('Convert a time')
+            ->setDescription('Converts a timezone or format')
             ->addArgument(
                 'time-in',
                 InputArgument::IS_ARRAY | InputArgument::OPTIONAL,

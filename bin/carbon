@@ -1,0 +1,31 @@
+#!/usr/bin/env php
+<?php
+
+namespace jpuck\CarbonConsole;
+
+if(file_exists(__DIR__.'/../../../autoload.php')){
+    require_once __DIR__.'/../../../autoload.php';
+} else {
+    require_once __DIR__.'/../vendor/autoload.php';
+}
+
+use Symfony\Component\Console\Application;
+
+$logo = '
+                 _                                             _
+   ___ __ _ _ __| |__   ___  _ __     ___ ___  _ __  ___  ___ | | ___
+  / __/ _` | \'__| \'_ \\ / _ \\| \'_ \\   / __/ _ \\| \'_ \\/ __|/ _ \\| |/ _ \\
+ | (_| (_| | |  | |_) | (_) | | | | | (_| (_) | | | \\__ \\ (_) | |  __/
+  \\___\\__,_|_|  |_.__/ \\___/|_| |_|  \\___\\___/|_| |_|___/\\___/|_|\\___|
+
+';
+
+// ASCII art logo:
+// http://www.patorjk.com/software/taag/#p=display&f=Ivrit&t=carbon%20console
+
+$version = $version ?? 'dev';
+$application = new Application($logo, $version);
+
+$application->add(new Commands\Convert);
+
+$application->run();
