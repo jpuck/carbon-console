@@ -22,8 +22,7 @@ class Convert extends Command {
                 'timezone-out',
                 'o',
                 InputOption::VALUE_OPTIONAL,
-                'Output timezone',
-                'UTC'
+                'Output timezone'
             )->addOption(
                 'format-out',
                 'f',
@@ -39,6 +38,9 @@ class Convert extends Command {
         $carbon = new Carbon($time);
 
         $timezoneOut = $input->getOption('timezone-out');
+        if ( empty($timezoneOut) ) {
+            $timezoneOut = date_default_timezone_get();
+        }
         $carbon->timezone = $timezoneOut;
 
         $format = $input->getOption('format-out');

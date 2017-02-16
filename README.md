@@ -33,8 +33,7 @@ Use the `help` command to get help with any command's usage:
 
     ctime help convert
 
-The primary command is `convert` with a default output timezone of UTC and
-input time of now.
+The primary command is `convert` which defaults input time now and output timezone local.
 
 >     Usage:
 >       convert [-o|--timezone-out [TIMEZONE-OUT]] [-f|--format-out [FORMAT-OUT]] [--] [<time-in>]...
@@ -43,6 +42,14 @@ See the documentation for a list of supported input formats for
 [date, time][19], and [timezones][17]. Also see available [output formats][20].
 
 ## Examples
+
+For the following examples, my system's local timezone is set to UTC.
+
+When it's 8:00AM in Chicago, what time will it be here?
+
+    ctime convert 8:00AM America/Chicago
+
+>     2017-02-16T14:00:00+00:00 UTC
 
 It's 5:18PM here, so what time is it in Casey Station?
 
@@ -67,6 +74,12 @@ Let's format that output as 12-hour:minute
     ctime convert 6:00PM America/Chicago -o Antarctica/Casey -f h:iA
 
 >     11:00AM
+
+If you use spaces in your format, make sure to quote the argument.
+
+    ctime convert 6:00PM America/Chicago -o Antarctica/Casey -f 'h:iA l, F j'
+
+>     11:00AM Friday, February 17
 
 [1]:http://symfony.com/doc/current/components/console.html
 [6]:https://github.com/jpuck/ctime/releases/latest
