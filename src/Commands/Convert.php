@@ -14,29 +14,25 @@ class Convert extends Command {
         $this->setName('convert')
             ->setDescription('Convert a time')
             ->addArgument(
-                'timezone-in',
-                InputArgument::REQUIRED,
-                'Input timezone to convert'
-            )->addArgument(
                 'time',
-                InputArgument::REQUIRED,
-                'Input time to convert'
-            )->addArgument(
+                InputArgument::IS_ARRAY | InputArgument::OPTIONAL,
+                'Input time components',
+                ['now']
+            )->addOption(
                 'timezone-out',
-                InputArgument::OPTIONAL,
-                'Output timezone to convert',
+                'o',
+                InputOption::VALUE_OPTIONAL,
+                'Output timezone',
                 'UTC'
             );
     }
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $timezoneIn  = $input->getArgument('timezone-in');
-        $time        = $input->getArgument('time');
-        $timezoneOut = $input->getArgument('timezone-out');
+        $time = implode(' ', $input->getArgument('time'));
+        $carbon = new Carbon($time);
 
-        $carbon = new Carbon($time, $timezoneIn);
-
+        $timezoneOut = $input->getOption('timezone-out');
         $carbon->timezone = $timezoneOut;
 
         $output->writeln($carbon);
