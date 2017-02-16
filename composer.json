@@ -1,6 +1,6 @@
 {
     "name": "jpuck/ctime",
-    "description": "PHP 7 CLI app to convert time",
+    "description": "PHP 7 command line symfony console application wrapper for Carbon to convert time.",
     "bin": ["bin/ctime"],
     "require": {
         "php": "^7.0",

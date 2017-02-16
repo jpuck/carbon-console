@@ -14,7 +14,7 @@ class Convert extends Command {
         $this->setName('convert')
             ->setDescription('Convert a time')
             ->addArgument(
-                'time',
+                'time-in',
                 InputArgument::IS_ARRAY | InputArgument::OPTIONAL,
                 'Input time components',
                 ['now']
@@ -24,17 +24,24 @@ class Convert extends Command {
                 InputOption::VALUE_OPTIONAL,
                 'Output timezone',
                 'UTC'
+            )->addOption(
+                'format-out',
+                'f',
+                InputOption::VALUE_OPTIONAL,
+                'Output format',
+                'c e'
             );
     }
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $time = implode(' ', $input->getArgument('time'));
+        $time = implode(' ', $input->getArgument('time-in'));
         $carbon = new Carbon($time);
 
         $timezoneOut = $input->getOption('timezone-out');
         $carbon->timezone = $timezoneOut;
 
-        $output->writeln($carbon);
+        $format = $input->getOption('format-out');
+        $output->writeln($carbon->format($format));
     }
 }

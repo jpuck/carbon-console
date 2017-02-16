@@ -15,6 +15,7 @@ wrapper for [Carbon][18] to convert time.
 
 [Download the latest phar release][6], set it executable,
 and move it to a good `PATH`
+
 Here's a oneline `sudo` command to make it available system-wide:
 
     curl -s -L https://github.com/jpuck/ctime/releases/latest | egrep -o '/jpuck/ctime/releases/download/[0-9\.]*/ctime.phar' | wget --base=http://github.com/ -i - -O ctime && chmod +x ctime && sudo mv ctime /usr/local/bin/
@@ -32,39 +33,40 @@ Use the `help` command to get help with any command's usage:
 
     ctime help convert
 
-The primary command is `convert` with a default output timezone of UTC.
+The primary command is `convert` with a default output timezone of UTC and
+input time of now.
 
 >     Usage:
->       convert [-o|--timezone-out [TIMEZONE-OUT]] [--] [<time>]...
+>       convert [-o|--timezone-out [TIMEZONE-OUT]] [-f|--format-out [FORMAT-OUT]] [--] [<time-in>]...
 
 See the documentation for a list of supported input formats for
-[date, time][19], and [timezones][17].
+[date, time][19], and [timezones][17]. Also see available [output formats][20].
 
 ## Examples
 
-It's 4:51PM here, so what time is it in Casey Station?
+It's 5:18PM here, so what time is it in Casey Station?
 
     ctime convert -o Antarctica/Casey
 
->     2017-02-17 03:51:49.000000
->     3
->     Antarctica/Casey
+>     2017-02-17T04:18:12+11:00 Antarctica/Casey
 
-When it's 5:00PM here, what time will it be in Casey Station?
+When it's 6:00PM here, what time will it be in Casey Station?
 
-    ctime convert 5:00PM -o Antarctica/Casey
+    ctime convert 6:00PM -o Antarctica/Casey
 
->     2017-02-17 04:00:00.000000
->     3
->     Antarctica/Casey
+>     2017-02-17T05:00:00+11:00 Antarctica/Casey
 
-When it's 5:00PM in Chicago, what time will it be in Casey Station?
+When it's 6:00PM in Chicago, what time will it be in Casey Station?
 
-    ctime convert 5:00PM America/Chicago -o Antarctica/Casey
+    ctime convert 6:00PM America/Chicago -o Antarctica/Casey
 
->     2017-02-17 10:00:00.000000
->     3
->     Antarctica/Casey
+>     2017-02-17T11:00:00+11:00 Antarctica/Casey
+
+Let's format that output as 12-hour:minute
+
+    ctime convert 6:00PM America/Chicago -o Antarctica/Casey -f h:iA
+
+>     11:00AM
 
 [1]:http://symfony.com/doc/current/components/console.html
 [6]:https://github.com/jpuck/ctime/releases/latest
@@ -78,3 +80,4 @@ When it's 5:00PM in Chicago, what time will it be in Casey Station?
 [17]:http://php.net/manual/en/timezones.php
 [18]:http://carbon.nesbot.com/
 [19]:http://php.net/manual/en/datetime.formats.php
+[20]:http://php.net/manual/en/function.date.php#refsect1-function.date-parameters
