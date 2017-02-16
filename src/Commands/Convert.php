@@ -1,4 +1,5 @@
 <?php
+
 namespace jpuck\CarbonConsole\Commands;
 
 use Symfony\Component\Console\Command\Command;
@@ -8,7 +9,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Carbon\Carbon;
 
-class Convert extends Command {
+class Convert extends Command
+{
     protected function configure()
     {
         $this->setName('convert')
@@ -39,7 +41,7 @@ class Convert extends Command {
         $carbon = new Carbon($time);
 
         $timezoneOut = $input->getOption('timezone-out');
-        if ( $timezoneOut === 'local' ) {
+        if ($timezoneOut === 'local') {
             $timezoneOut = date_default_timezone_get();
         }
         $carbon->timezone = $timezoneOut;
