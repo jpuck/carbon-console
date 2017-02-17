@@ -16,7 +16,7 @@ and move it to a good `PATH`
 
 Here's a oneline `sudo` command to make it available system-wide:
 
-    curl -s -L https://github.com/jpuck/carbon-console/releases/latest | egrep -o '/jpuck/carbon-console/releases/download/[0-9\.]*/carbon-console.phar' | wget --base=http://github.com/ -i - -O carbon && chmod +x carbon && sudo mv carbon /usr/local/bin/
+    curl -sSL https://github.com/jpuck/carbon-console/releases/latest | egrep -o '/jpuck/carbon-console/releases/download/[0-9\.]*/carbon-console.phar"' | head -c-2 | wget --base=https://github.com/ -i - -O carbon && chmod +x carbon && sudo mv carbon /usr/local/bin/
 
 If you don't have `sudo` privileges, then you can omit the last part
 `sudo mv carbon /usr/local/bin/` and just save it somewhere in your user's `PATH`
