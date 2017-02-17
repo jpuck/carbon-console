@@ -10,4 +10,4 @@
 /phpunit.xml                     export-ignore
 /phpunit.xml.dist                export-ignore
 /tests                           export-ignore
-/release.bash                    export-ignore
+release.bash                     export-ignore
