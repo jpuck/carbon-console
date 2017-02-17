@@ -9,7 +9,42 @@ Convert timezones and formats with [Carbon][18] wrapped in a PHP7 command line
 [![Total Downloads][8]][6]
 [![License][9]][6]
 
+* [Installation](#installation)
+    * [phive](#phive)
+    * [download](#download)
+    * [composer](#composer)
+    * [source](#source)
+* [Usage](#usage)
+* [Examples](#examples)
+
 ## Installation
+
+First make sure you have at least PHP 7 installed.
+Then, there are multiple ways to install. Choose the one best for you:
+
+* [phive](#phive)
+* [download](#download)
+* [composer](#composer)
+* [source](#source)
+
+### Phive
+
+The most preferred method of installation is to use [phive][21].
+This avoids dependency conflicts between tools using
+different versions of libraries (like Carbon or Symfony Console).
+
+Install to some directory that's in your `PATH` such as `~/bin` or `/usr/local/bin`
+
+    phive install carbon --target ~/bin
+
+This creates `phive.xml` in your current directory.
+If you're into versioning your dotfiles, consider creating a symlink to this.
+
+Then you'll be able to easily update when new versions are released.
+
+    phive update
+
+### Download
 
 [Download the latest phar release][6], set it executable,
 and move it to a good `PATH`
@@ -20,9 +55,35 @@ Here's a oneline `sudo` command to make it available system-wide:
 
 If you don't have `sudo` privileges, then you can omit the last part
 `sudo mv carbon /usr/local/bin/` and just save it somewhere in your user's `PATH`
-or simply execute it verbosely with the PHP CLI.
+such as `~/bin` or simply execute it verbosely with the PHP CLI.
 
     php carbon-console.phar
+
+### Composer
+
+[Registered on packagist][22] for installation using [composer][23].
+
+    composer global require jpuck/carbon-console
+
+Make sure your `PATH` contains the [global bin directory][24] which you can find:
+
+    composer global config bin-dir --absolute
+
+You can then [add that location to your shell profile or rc so that it's always available][25].
+For example, if you're running Ubuntu 16.04 with bash, then this might work:
+
+    echo 'export PATH="$PATH:$HOME/.config/composer/vendor/bin"' >> ~/.bashrc
+
+**NOTE** that you will probably have to contend with a dependency conflict
+sooner or later with each additional package you install.
+This is why [phive](#phive) is preferred.
+
+### Source
+
+    git clone https://github.com/jpuck/carbon-console.git
+    cd carbon-console
+    composer install
+    ./bin/carbon
 
 ## Usage
 
@@ -95,3 +156,8 @@ If you use spaces in your format, make sure to quote the argument.
 [18]:http://carbon.nesbot.com/
 [19]:http://php.net/manual/en/datetime.formats.php
 [20]:http://php.net/manual/en/function.date.php#refsect1-function.date-parameters
+[21]:https://phar.io/
+[22]:https://packagist.org/packages/jpuck/carbon-console
+[23]:https://getcomposer.org/
+[24]:https://getcomposer.org/doc/03-cli.md#global
+[25]:http://unix.stackexchange.com/a/26059/148062
